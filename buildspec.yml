@@ -6,12 +6,10 @@ phases:
       - curl -LO "https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip"
       - unzip terraform_1.5.7_linux_amd64.zip
       - mv terraform /usr/local/bin/
+      - terraform --version
+
   build:
     commands:
       - terraform init
+      - terraform plan
       - terraform destroy -auto-approve
-      # Extract S3 object keys and save to a file
-      - terraform output -json s3_object_keys > s3_keys.json
-artifacts:
-  files:
-    - s3_keys.json  # Pass this to the Deploy stage
