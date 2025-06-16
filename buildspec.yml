@@ -9,7 +9,7 @@ phases:
   build:
     commands:
       - terraform init
-      - terraform apply -auto-approve
+      - terraform destroy -auto-approve
       # Extract S3 object keys and save to a file
       - terraform output -json s3_object_keys > s3_keys.json
 artifacts:
